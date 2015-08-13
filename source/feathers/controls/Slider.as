@@ -649,7 +649,15 @@ package feathers.controls
 		/**
 		 * @private
 		 */
-		protected var isDragging:Boolean = false;
+		protected var _isDragging:Boolean = false;
+		
+		/**
+		 * Indicates clicked on slider on not
+		 */
+		public function get isDragging():Number
+		{
+			return this._isDragging;
+		}
 		
 		/**
 		 * Determines if the slider dispatches the <code>Event.CHANGE</code>
@@ -2069,7 +2077,7 @@ package feathers.controls
 		{
 			this._touchPointID = -1;
 			var wasDragging:Boolean = this.isDragging;
-			this.isDragging = false;
+			this._isDragging = false;
 			if(wasDragging && !this.liveDragging)
 			{
 				this.dispatchEventWith(Event.CHANGE);
@@ -2125,7 +2133,7 @@ package feathers.controls
 						this._repeatTimer.stop();
 					}
 					this._touchPointID = -1;
-					this.isDragging = false;
+					this._isDragging = false;
 					if(!this.liveDragging)
 					{
 						this.dispatchEventWith(Event.CHANGE);
@@ -2155,7 +2163,7 @@ package feathers.controls
 				this._touchStartX = HELPER_POINT.x;
 				this._touchStartY = HELPER_POINT.y;
 				this._touchValue = this.locationToValue(HELPER_POINT);
-				this.isDragging = true;
+				this._isDragging = true;
 				this.dispatchEventWith(FeathersEventType.BEGIN_INTERACTION);
 				if(this._showThumb && this._trackInteractionMode == TRACK_INTERACTION_MODE_BY_PAGE)
 				{
@@ -2209,7 +2217,7 @@ package feathers.controls
 				else if(touch.phase == TouchPhase.ENDED)
 				{
 					this._touchPointID = -1;
-					this.isDragging = false;
+					this._isDragging = false;
 					if(!this.liveDragging)
 					{
 						this.dispatchEventWith(Event.CHANGE);
@@ -2230,7 +2238,7 @@ package feathers.controls
 				this._thumbStartY = this.thumb.y;
 				this._touchStartX = HELPER_POINT.x;
 				this._touchStartY = HELPER_POINT.y;
-				this.isDragging = true;
+				this._isDragging = true;
 				this.dispatchEventWith(FeathersEventType.BEGIN_INTERACTION);
 			}
 		}
